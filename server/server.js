@@ -16,14 +16,24 @@ const PORT = process.env.PORT || 4000;
 await connectDB();
 await connectCloudinary();
 
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://grocery-app-orpin.vercel.app'
+  ];
 
-app.use(cors({
-    origin: allowedOrigins, // Allow requests from the frontend
-    credentials: true,      // Allow cookies to be sent
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow these HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow these headers
-}));
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }));
+  
 
 app.use(express.json());
 app.use(cookieParser());
