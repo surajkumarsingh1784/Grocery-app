@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 axios.defaults.withCredentials = true; // Ensure cookies are sent with requests
-axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL; // Backend URL
+axios.defaults.baseURL = "https://grocery-app-backend-ic7e.onrender.com/"; // Backend URL
 
 export const AppContext = createContext();
 
