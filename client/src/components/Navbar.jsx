@@ -44,7 +44,7 @@ function Navbar() {
 
             {/* Desktop Menu */}
             <div className="hidden sm:flex items-center gap-8">
-                <NavLink to="/seller/login">
+                <NavLink to="/seller">
                   <button className="cursor-pointer px-4 py-2 border border-gray-300 rounded-full hover:bg-gray-100 transition">Seller Dashboard</button>
                 </NavLink>
                 <NavLink to='/'> Home </NavLink>
