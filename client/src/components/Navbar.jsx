@@ -32,7 +32,7 @@ function Navbar() {
         if(searchQuery.length >0){
             navigate("/products")
         }
-    },[searchQuery])
+    },[searchQuery, navigate])
 
 
     return (
@@ -46,7 +46,7 @@ function Navbar() {
             <div className="hidden sm:flex items-center gap-8">
                 <NavLink to='/'> Home </NavLink>
                 <NavLink to='/products'> All Product</NavLink>
-                <NavLink to='/'> Contact </NavLink>
+                <NavLink to='/contact'> Contact </NavLink>
 
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
                     <input onChange={(e)=>
@@ -93,10 +93,10 @@ function Navbar() {
             {open && (
                 <div className={`${open ? 'flex' : 'hidden'} absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}>
                     <NavLink to='/' onClick={() => setOpen(false)}> Home </NavLink>
-                    <NavLink to='/' onClick={() => setOpen(false)}> All products </NavLink>
+                    <NavLink to='/products' onClick={() => setOpen(false)}> All products </NavLink>
                     {user &&
                         <NavLink to='/' onClick={() => setOpen(false)}> My Orders </NavLink>}
-                    <NavLink to='/' onClick={() => setOpen(false)}> Contact </NavLink>
+                    <NavLink to='/contact' onClick={() => setOpen(false)}> Contact </NavLink>
 
                     {!user ? (
                         <button onClick={() => {
