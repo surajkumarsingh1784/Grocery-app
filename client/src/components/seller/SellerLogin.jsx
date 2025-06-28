@@ -8,8 +8,8 @@ import MegaMart from '../../assets/MegaMart.png'
 const SellerLogin = () => {
     const { isSeller, setIsSeller } = useAppContext()
     const navigate = useNavigate()
-    const[email,setEmail]= useState('')
-    const[password,setPassword]= useState('')
+    const[email,setEmail]= useState('admin@example.com')
+    const[password,setPassword]= useState('greatstack123')
 
     useEffect(() => {
         if (isSeller) navigate('/seller')
