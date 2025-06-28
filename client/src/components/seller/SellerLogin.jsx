@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../../context/AppContext'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { assets } from '../../assets/assets'
 
 const SellerLogin = () => {
     const{isSeller,setIsSeller,navigate} = useAppContext()
@@ -12,7 +13,7 @@ const SellerLogin = () => {
         if(isSeller){
             navigate('/seller')
         }
-    },[isSeller])
+    },[isSeller, navigate])
     
     const onSubmitHandler = async (e) => {
         try{
@@ -34,6 +35,7 @@ const SellerLogin = () => {
   return !isSeller && (
     <form onSubmit={onSubmitHandler} className='min-h-screen flex items-center text-sm text-gray-500'>
       <div className='flex flex-col gap-5 items-start p-8 py-12 min-w-80 sm:min-w-88 m-auto border border-gray-300 rounded-lg shadow-xl'>
+       <img src={assets.logo} alt='MegaMart Logo' className='h-12 mx-auto mb-4' />
       <p className='text-2xl font-medium m-auto'><span className=' text-primary-dull'> Seller</span> Login</p>
       <div className='w-full'>
         <p>Email</p>
