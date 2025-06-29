@@ -17,8 +17,8 @@ await connectDB();
 await connectCloudinary();
 
 const allowedOrigins = [
-    'http://localhost:5173',
-    'https://grocery-app-orpin.vercel.app'
+    process.env.CLIENT_URL || 'http://localhost:5173',
+    'https://grocery-app-orpin.vercel.app',
   ];
 
   app.use(cors({
