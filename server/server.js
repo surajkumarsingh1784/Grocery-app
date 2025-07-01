@@ -18,6 +18,7 @@ await connectCloudinary();
 
 const allowedOrigins = [
     'http://localhost:5173',
+    'http://localhost:5174',
     'https://grocery-app-orpin.vercel.app',
     process.env.CLIENT_URL
   ].filter(Boolean);
@@ -52,12 +53,6 @@ app.use('/api/product', productRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/address', addressRouter);
 app.use('/api/order', orderRouter);
-
-// Debug: Log all requests
-app.use('*', (req, res) => {
-    console.log(`404 - Route not found: ${req.method} ${req.originalUrl}`);
-    res.status(404).json({ success: false, message: 'Route not found' });
-});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
