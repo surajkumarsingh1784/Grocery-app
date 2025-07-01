@@ -9,7 +9,7 @@ axios.defaults.baseURL = "https://grocery-app-backend-ic7e.onrender.com/"; // Ba
 export const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
-    const currency = import.meta.env.VITE_CURRENCY;
+    const currency = import.meta.env.VITE_CURRENCY || '$';
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [isSeller, setIsSeller] = useState(false);
