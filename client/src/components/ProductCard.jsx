@@ -31,7 +31,7 @@ const ProductCard = ({products}) => {
                         <span className="text-gray-500/60 md:text-sm text-xs line-through">
                         {currency}{products.price}</span>
                     </p>
-                    <div onClick={(e)=>{e.stopPropagation();}} className="text-indigo-500">
+                    <div onClick={(e)=>{e.stopPropagation();}} className="text-primary-dull">
                         {!cartItems[products._id] ? (
                             <button className="flex items-center justify-center gap-1 bg-indigo-100 border border-indigo-300 
                             md:w-[80px] w-[64px] h-[34px] rounded text-primary-dull font-medium cursor-pointer" 
