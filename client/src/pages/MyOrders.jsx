@@ -29,7 +29,7 @@ const MyOrders = () => {
     <div className='mt-16 pb-16'>
       <div className='mb-8 flex flex-col items-end w-max'>
       <p className='text-2xl font-medium uppercase'>MY ORDERS</p>
-      <div className='w-16 h-0.5 bg-primary rounded-full'></div>
+      <div className='w-16 h-0.5 bg-primary-dull rounded-full'></div>
       </div>
       {MyOrders.map((order, index) => (
         <div key={order._id} className='border border-gray-300 rounded-lg p-4 py-5 mb-10 max-w-4xl'>

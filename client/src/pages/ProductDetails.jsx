@@ -79,7 +79,7 @@ const ProductDetails = () => {
                             Add to Cart
                         </button>
                         <button  onClick={()=>{addToCart(product._id),navigate("/cart")}}  
-                        className="w-full py-3.5 cursor-pointer font-medium bg-primary text-white hover:bg-primary transition" >
+                        className="w-full py-3.5 cursor-pointer font-medium bg-primary-dull text-white hover:bg-primary transition" >
                             Buy now
                         </button>
                     </div>
@@ -89,7 +89,7 @@ const ProductDetails = () => {
             <div className="flex flex-col items-center mt-20">
                 <div className="flex flex-col items-center w-max">
                     <p className="text-3xl font-medium">RELATED PRODUCTS</p>
-                    <div className="w-20 h-0.5 bg-primary rounded-full mt-2">
+                    <div className="w-20 h-0.5 bg-primary-dull rounded-full mt-2">
                     </div>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 md:gap-6 mt-6 gap-3 w-full">

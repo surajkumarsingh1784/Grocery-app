@@ -47,7 +47,7 @@ const SellerLogin = () => {
           <input onChange={(e)=>setPassword(e.target.value)} value={password}
           type='password' placeholder='Enter Password'className='border border-gray-300 rounded w-full p-2 mt-1 outline-primary'required/>
         </div>
-        <button className=' bg-primary text-white w-full py-2 rounded-md cursor-pointer'>Login Seller</button>
+        <button className=' bg-primary-dull text-white w-full py-2 rounded-md cursor-pointer'>Login Seller</button>
       </form>
     </div>
   )

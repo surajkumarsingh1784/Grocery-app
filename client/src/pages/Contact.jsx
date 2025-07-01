@@ -53,7 +53,7 @@ const Contact = () => {
           <textarea name="message" value={form.message} onChange={handleChange} className="w-full border rounded p-2" rows={4} />
           {errors.message && <span className="text-red-500 text-xs">{errors.message}</span>}
         </div>
-        <button type="submit" className="bg-primary text-white px-4 py-2 rounded">Send Message</button>
+        <button type="submit" className="bg-primary-dull text-white px-4 py-2 rounded">Send Message</button>
         {submitted && <div className="text-green-600 mt-2">Thank you for contacting us! We’ll get back to you soon.</div>}
       </form>
       <div className="bg-white p-6 rounded shadow space-y-2">

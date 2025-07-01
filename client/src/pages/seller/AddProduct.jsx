@@ -148,7 +148,7 @@ const AddProduct = () => {
                         />
                     </div>
                 </div>
-                <button className="px-8 py-2.5 bg-primary text-white font-medium rounded cursor-pointer">ADD</button>
+                <button className="px-8 py-2.5 bg-primary-dull text-white font-medium rounded cursor-pointer">ADD</button>
             </form>
         </div>
     );
