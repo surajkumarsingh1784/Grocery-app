@@ -144,7 +144,7 @@ const AddAddress = () => {
                         />
                         <button
                             type="submit"
-                            className="bg-primary hover:bg-indigo-600 transition-all
+                            className="bg-green-500 hover:bg-green-600 transition-all
                             text-white w-full py-2 rounded-md cursor-pointer"
                         >
                             SAVE ADDRESS
