@@ -24,17 +24,7 @@ const allowedOrigins = [
   ].filter(Boolean);
 
   app.use(cors({
-    origin: function (origin, callback) {
-      console.log('CORS Request from origin:', origin);
-      console.log('Allowed origins:', allowedOrigins);
-      // Allow localhost on any port for development
-      if (!origin || allowedOrigins.includes(origin) || (origin && origin.startsWith('http://localhost:'))) {
-        callback(null, true);
-      } else {
-        console.log('CORS blocked for origin:', origin);
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: true, // Allow all origins temporarily
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
