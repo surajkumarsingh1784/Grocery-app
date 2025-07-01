@@ -63,7 +63,7 @@ function Navbar() {
                     <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">{getCartCount()}</button>
                 </div>
 
-                {!user ? (<button onClick={()=> setShowUserlogin(true)} className="cursor-pointer px-8 py-2 bg-primary hover:bg-indigo-600 transition text-white rounded-full">
+                {!user ? (<button onClick={()=> setShowUserlogin(true)} className="cursor-pointer px-8 py-2 bg-primary hover:bg-primary transition text-white rounded-full">
                     Login
                 </button>)
                 :
@@ -105,11 +105,11 @@ function Navbar() {
                         <button onClick={() => {
                             setOpen(false)
                             setShowUserlogin(true)
-                        } } className="cursor-pointer px-6 py-2 mt-2 bg-primary  hover:bg-indigo-600 transition text-white rounded-full text-sm">
+                        } } className="cursor-pointer px-6 py-2 mt-2 bg-primary  hover:bg-primary transition text-white rounded-full text-sm">
                             Login
                         </button>
                     ) : (
-                        <button onClick={logout} className="cursor-pointer px-6 py-2 mt-2 bg-primary  hover:bg-indigo-600 transition text-white rounded-full text-sm">
+                        <button onClick={logout} className="cursor-pointer px-6 py-2 mt-2 bg-primary  hover:bg-primary transition text-white rounded-full text-sm">
                             Logout
                         </button>
                     )}
