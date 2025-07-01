@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken';
 
 const authSeller = async (req, res, next) => {
+    console.log('All cookies received:', req.cookies);
     const {sellerToken } = req.cookies;
+    console.log('SellerToken:', sellerToken);
     if (!sellerToken) {
         return res.status(401).json({success: false, message: 'Unauthorized access'});
     }
