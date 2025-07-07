@@ -7,6 +7,7 @@ import Stripe from 'stripe';
 export const placeOrderCOD = async (req, res) => {
     try {
         const { userId, items, address } = req.body;
+        console.log("placeOrderCOD - userId:", userId); // Debug log
 
         if (!userId || !address || items.length === 0) {
             return res.status(400).json({ success: false, message: "Missing required fields" });
@@ -35,6 +36,7 @@ export const placeOrderCOD = async (req, res) => {
             paymentType: "COD",
         });
 
+        console.log("placeOrderCOD - Order created with ID:", order._id, "for user:", userId); // Debug log
         res.status(201).json({ success: true, message: "Order placed successfully", order });
     } catch (error) {
         console.error("Error in placeOrderCOD:", error.message);
@@ -114,6 +116,7 @@ export const placeOrderStripe = async (req, res) => {
 export const getUserOrders = async (req, res) => {
     try {
         const { userId } = req.user; // Ensure `authUser` middleware sets `req.user`
+        console.log("getUserOrders - userId:", userId); // Debug log
 
         if (!userId) {
             return res.status(400).json({ success: false, message: "User ID is required" });
@@ -125,6 +128,7 @@ export const getUserOrders = async (req, res) => {
             .populate('address') // Populate address details
             .sort({ createdAt: -1 }); // Sort by most recent orders
 
+        console.log("getUserOrders - Found orders:", orders.length); // Debug log
         res.json({ success: true, orders });
     } catch (error) {
         console.error("Error in getUserOrders:", error.message); // Debugging log
