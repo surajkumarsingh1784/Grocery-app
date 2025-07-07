@@ -1,9 +1,12 @@
 import jwt from 'jsonwebtoken';
 
 const authUser = (req, res, next) => {
+    console.log('All cookies in authUser:', req.cookies); // Debug log
     const { token } = req.cookies;
+    console.log('Token found:', token); // Debug log
 
     if (!token) {
+        console.log('No token provided'); // Debug log
         return res.status(401).json({ success: false, message: "Unauthorized access: No token provided" });
     }
 
