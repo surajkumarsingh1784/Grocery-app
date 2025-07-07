@@ -45,6 +45,7 @@ const Cart = () => {
 
     const placeOrder = async () => {
         try {
+            console.log('User state:', user); // Debug log
             if (!user || !user._id) {
                 toast.error("User is not logged in");
                 return;
