@@ -46,10 +46,14 @@ const Cart = () => {
     const placeOrder = async () => {
         try {
             console.log('User state:', user); // Debug log
-            if (!user || !user._id) {
+            // Check if user exists and has necessary properties
+            if (!user || (!user._id && !user.id)) {
                 toast.error("User is not logged in");
                 return;
             }
+            
+            // Use either _id or id for userId
+            const userId = user._id || user.id;
             if (!cartArray || cartArray.length === 0) {
                 toast.error("Cart is empty");
                 return;
@@ -60,7 +64,7 @@ const Cart = () => {
             }
 
             const payload = {
-                userId: user._id,
+                userId: userId,
                 items: cartArray.map((item) => ({ product: item._id, quantity: item.quantity })),
                 address: selectedAddress._id,
             };
