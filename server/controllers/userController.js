@@ -30,13 +30,13 @@ export const register = async (req, res) => {
             expiresIn: '7d',
         });
         res.cookie('token', token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'None',
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            httpOnly: true, // Prevent JavaScript from accessing the cookie
+            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production   
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict', // CSRF protection
+            maxAge: 7 * 24 * 60 * 60 * 1000 // cookie expiration time
         })
 
-        return res.json({success: true, message: 'User registered successfully', user : {_id: user._id, email: user.email, name: user.name}});
+        return res.json({success: true, message: 'User registered successfully', user : {email: user.email, name: user.name}});
 
     }catch(error){
         console.log(error.message);
@@ -66,13 +66,13 @@ export const login = async (req, res) => {
             expiresIn: '7d',
         });
         res.cookie('token', token, {
-            httpOnly: true,
-            secure: true, // Always secure for production
-            sameSite: 'None', // Required for cross-origin
-            maxAge: 7 * 24 * 60 * 60 * 1000
+            httpOnly: true, // Prevent JavaScript from accessing the cookie
+            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production   
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict', // CSRF protection
+            maxAge: 7 * 24 * 60 * 60 * 1000 // cookie expiration time
         })
 
-        return res.json({success: true, message: 'User logged in  successfully', user : {_id: user._id, email: user.email, name: user.name}});
+        return res.json({success: true, message: 'User logged in  successfully', user : {email: user.email, name: user.name}});
     }catch(error){
         console.log(error.message);
         res.json({success: false, message: error.message});
@@ -108,8 +108,8 @@ export const logout = async (req, res)=> {
     try{
         res.clearCookie('token', {
             httpOnly: true,
-            secure: true,
-            sameSite: 'None'
+            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production   
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict', // CSRF protection
         })
         res.json({success: true, message: 'User logged out successfully'});
 
