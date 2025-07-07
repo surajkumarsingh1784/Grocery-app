@@ -46,34 +46,23 @@ const Cart = () => {
     const placeOrder = async () => {
         try {
             console.log('User state:', user); // Debug log
-            
-            // Temporary fix: If user exists but no _id, ask to re-login
-            if (!user) {
+            if (!user || !user._id) {
                 toast.error("User is not logged in");
                 return;
             }
-            
-            if (!user._id && !user.id) {
-                toast.error("Please logout and login again");
-                return;
-            }
-            
-            // Use either _id or id for userId, or fallback to email for now
-            const userId = user._id || user.id || user.email;
             if (!cartArray || cartArray.length === 0) {
                 toast.error("Cart is empty");
                 return;
             }
-            // Temporarily skip address requirement for testing
-            // if (!selectedAddress || !selectedAddress._id) {
-            //     toast.error("Please select an address");
-            //     return;
-            // }
+            if (!selectedAddress || !selectedAddress._id) {
+                toast.error("Please select an address");
+                return;
+            }
 
             const payload = {
-                userId: userId,
+                userId: user._id,
                 items: cartArray.map((item) => ({ product: item._id, quantity: item.quantity })),
-                address: selectedAddress?._id || "dummy-address", // Fallback for testing
+                address: selectedAddress._id,
             };
 
             const { data } = await axios.post(
