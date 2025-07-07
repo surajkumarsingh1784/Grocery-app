@@ -40,7 +40,7 @@ const ProductCard = ({products}) => {
                                 Add
                             </button>
                         ) : (
-                            <div className="flex items-center justify-center gap-2 md:w-20 w-16 h-[34px] bg-primary rounded select-none">
+                            <div className="flex items-center justify-center gap-2 md:w-20 w-16 h-[34px] bg-indigo-500/25 rounded select-none">
                                 <button onClick={() => {removeItemFromCart(products._id)}} className="cursor-pointer text-md px-2 h-full" >
                                     -
                                 </button>
