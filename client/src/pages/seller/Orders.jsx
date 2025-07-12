@@ -1,27 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useAppContext } from '../../context/AppContext'
 import { assets, dummyOrders} from '../../assets/assets';
+import toast from 'react-hot-toast';
 
 const Orders = () => {
     const{currency,axios} = useAppContext()
     const[orders, setOrders] = useState([]);
 
-    const fetchOrders = async () => {
+    const fetchOrders = useCallback(async () => {
        try{
+            console.log('Fetching seller orders...'); // Debug log
             const{data}=await axios.get('/api/order/seller');
+            console.log('Seller orders response:', data); // Debug log
             if(data.success){
+                console.log('Seller orders found:', data.orders.length); // Debug log
                 setOrders(data.orders)
              }
              else{
+                console.error('Failed to fetch orders:', data.message);
                 toast.error(data.message)
              }
        }catch(error){
-        toast.error(data.message)
+        console.error('Error fetching orders:', error.message);
+        toast.error(error.message)
        }
-    }
+    }, [axios]);
     useEffect(()=>{
         fetchOrders();
-    },[])
+    },[fetchOrders])
 
 
   return (

@@ -6,8 +6,8 @@ import authSeller from '../middlewares/authSeller.js';
 const orderRouter = express.Router();
 
 orderRouter.post('/cod', authUser, placeOrderCOD); // For COD orders
-orderRouter.get('/user', authUser, getUserOrders); // Ensure this is a GET route
-orderRouter.post('/seller', authSeller, getAllOrders); // For fetching seller orders
+orderRouter.get('/user', authUser, getUserOrders); // For user orders
+orderRouter.get('/seller', authSeller, getAllOrders); // For seller orders (changed to GET)
 orderRouter.post('/stripe', authUser, placeOrderStripe); // For Stripe orders
 
 export default orderRouter;
