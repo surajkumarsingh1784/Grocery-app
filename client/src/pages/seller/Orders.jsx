@@ -52,12 +52,27 @@ const Orders = () => {
                     </div>
 
                     <div className="text-sm md:text-base text-black/60">
-                        <p className='text-black/80'>
-                        {order.address ? `${order.address.firstName || ''} ${order.address.lastName || ''}` : "Address ID: " + order.address}
-                        </p>
-                        {order.address?.street && <p>{order.address.street}, {order.address.city}</p>}
-                        {order.address?.state && <p>{order.address.state}, {order.address.zipcode}, {order.address.country}</p>}
-                        {order.address?.phone && <p>{order.address.phone}</p>}
+                        {/* Debug what address looks like */}
+                        {console.log('Order address:', order.address)}
+                        
+                        {order.address && typeof order.address === 'object' ? (
+                            <>
+                                <p className='text-black/80 font-medium'>
+                                    {order.address.firstName && order.address.lastName 
+                                        ? `${order.address.firstName} ${order.address.lastName}`
+                                        : 'Customer Name Not Available'
+                                    }
+                                </p>
+                                <p>{order.address.street || 'Street not available'}</p>
+                                <p>
+                                    {order.address.city || 'City'}, {order.address.state || 'State'}, {order.address.zipcode || 'ZIP'}
+                                </p>
+                                <p>{order.address.country || 'Country'}</p>
+                                {order.address.phone && <p>Phone: {order.address.phone}</p>}
+                            </>
+                        ) : (
+                            <p className='text-black/80'>Address ID: {order.address}</p>
+                        )}
 
                     </div>
 
