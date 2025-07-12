@@ -122,8 +122,10 @@ export const getUserOrders = async (req, res) => {
             return res.status(400).json({ success: false, message: "User ID is required" });
         }
 
-        // Fetch orders without populate first to avoid errors
-        const orders = await Order.find({ userId }).sort({ createdAt: -1 });
+        // Fetch orders and populate product details
+        const orders = await Order.find({ userId })
+            .populate('items.product') // Populate product details
+            .sort({ createdAt: -1 });
         console.log("getUserOrders - Found orders:", orders.length); // Debug log
 
         res.json({ success: true, orders });

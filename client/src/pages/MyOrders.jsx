@@ -48,7 +48,7 @@ const MyOrders = () => {
                     <div className='flex items-center mb-4 md:mb-0'>
                         <div className='bg-primary/10 p-4 rounded-lg'>
                             <img 
-                                src={item.product?.image[0] || "placeholder-image-url"} 
+                                src={item.product?.image?.[0] || "/placeholder-image.png"} 
                                 alt={item.product?.name || "Product"} 
                                 className='w-16 h-16'
                             />
