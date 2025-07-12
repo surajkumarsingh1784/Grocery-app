@@ -140,17 +140,15 @@ export const getUserOrders = async (req, res) => {
 
 export const getAllOrders = async (req, res) => {
     try{
-        // Show all orders for seller dashboard with proper populate
+        // Show all orders for seller dashboard (without address populate to avoid error)
         const orders = await Order.find({})
             .populate('items.product')
-            .populate('address') // Enable address populate
             .sort({createdAt: -1});
         
         console.log("getAllOrders - Found orders:", orders.length); // Debug log
         res.json({success: true, orders});
     } catch(error){
         console.log("Error in getAllOrders:", error.message);
-        console.log("Error stack:", error.stack); // Full error details
         res.json({success: false, message: error.message});
     }
 }
