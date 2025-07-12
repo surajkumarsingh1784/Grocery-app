@@ -53,11 +53,11 @@ const Orders = () => {
 
                     <div className="text-sm md:text-base text-black/60">
                         <p className='text-black/80'>
-                        {order.address ? `${order.address.firstName} ${order.address.lastName}` : "No Address Found"}
+                        {order.address ? `${order.address.firstName || ''} ${order.address.lastName || ''}` : "Address ID: " + order.address}
                         </p>
-                        <p>{order.address.street}, {order.address.city}</p>
-                        <p> {order.address.state}, {order.address.zipcode}, {order.address.country}</p>
-                        <p>{order.address.phone}</p>
+                        {order.address?.street && <p>{order.address.street}, {order.address.city}</p>}
+                        {order.address?.state && <p>{order.address.state}, {order.address.zipcode}, {order.address.country}</p>}
+                        {order.address?.phone && <p>{order.address.phone}</p>}
 
                     </div>
 
