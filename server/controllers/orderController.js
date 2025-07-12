@@ -122,16 +122,14 @@ export const getUserOrders = async (req, res) => {
             return res.status(400).json({ success: false, message: "User ID is required" });
         }
 
-        // Fetch orders and populate product and address fields
-        const orders = await Order.find({ userId })
-            .populate('items.product') // Populate product details
-            .populate('address') // Populate address details
-            .sort({ createdAt: -1 }); // Sort by most recent orders
-
+        // Fetch orders without populate first to avoid errors
+        const orders = await Order.find({ userId }).sort({ createdAt: -1 });
         console.log("getUserOrders - Found orders:", orders.length); // Debug log
+
         res.json({ success: true, orders });
     } catch (error) {
         console.error("Error in getUserOrders:", error.message); // Debugging log
+        console.error("Error stack:", error.stack); // Full error details
         res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 };
