@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useAppContext } from '../context/AppContext';
 import { dummyAddress, dummyOrders } from '../assets/assets';
 
@@ -7,10 +7,13 @@ const MyOrders = () => {
     const[MyOrders, setMyOrders] = useState([]);
     const{currency,axios,user} = useAppContext()
     
-    const fetchMyOrders = async () => {
+    const fetchMyOrders = useCallback(async () => {
         try {
+            console.log('Fetching orders...'); // Debug log
             const { data } = await axios.get('/api/order/user'); // Ensure this is a GET request
+            console.log('Orders response:', data); // Debug log
             if (data.success) {
+                console.log('Orders found:', data.orders.length); // Debug log
                 setMyOrders(data.orders); // Set the fetched orders
             } else {
                 console.error("Failed to fetch orders:", data.message);
@@ -18,13 +21,13 @@ const MyOrders = () => {
         } catch (error) {
             console.error("Error fetching orders:", error.message);
         }
-    };
+    }, [axios]);
     
     useEffect(()=>{
         if(user) {
             fetchMyOrders()
         }
-    },[user])
+    },[user, fetchMyOrders])
   return (
     <div className='mt-16 pb-16'>
       <div className='mb-8 flex flex-col items-end w-max'>
